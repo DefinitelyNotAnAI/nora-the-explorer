@@ -1,0 +1,21 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are meant to be modified
+; by the editor when saving the project.
+
+config_version=5
+
+[application]
+
+config/name="Nora & Miso"
+run/main_scene="res://scenes/TestRoom.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[autoload]
+
+GameTimer="*res://scripts/game_timer.gd"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

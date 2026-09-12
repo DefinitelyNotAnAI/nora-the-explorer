@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/test_room.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/TriggerArea.tscn" id="4_trigger"]
+[ext_resource type="PackedScene" path="res://scenes/Collectible.tscn" id="5_collectible"]
+[ext_resource type="PackedScene" path="res://scenes/RestoreTarget.tscn" id="6_restore"]
+[ext_resource type="Script" path="res://scripts/timer_hud.gd" id="7_timerhud"]
+[ext_resource type="Script" path="res://scripts/room_floor.gd" id="8_roomfloor"]
+
+[node name="TestRoom" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_script")
+
+[node name="RoomFloor" type="Polygon2D" parent="." groups=["room_floor"]]
+color = Color(0.7, 0.7, 0.7, 0.25)
+polygon = PackedVector2Array(0, 520, 1100, 520, 1100, 300, 0, 300)
+script = ExtResource("8_roomfloor")
+near_y = 520.0
+far_y = 300.0
+far_scale = 0.4
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(150, 480)
+
+[node name="RestoreTarget" parent="." instance=ExtResource("6_restore")]
+position = Vector2(100, 480)
+
+[node name="TriggerArea" parent="." instance=ExtResource("4_trigger")]
+position = Vector2(500, 450)
+
+[node name="Collectible1" parent="." instance=ExtResource("5_collectible")]
+position = Vector2(650, 420)
+
+[node name="Collectible2" parent="." instance=ExtResource("5_collectible")]
+position = Vector2(800, 380)
+
+[node name="Collectible3" parent="." instance=ExtResource("5_collectible")]
+position = Vector2(950, 330)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 200
+
+[node name="StatusLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 500.0
+offset_bottom = 60.0
+
+[node name="TimerLabel" type="Label" parent="UI"]
+script = ExtResource("7_timerhud")
+offset_left = 700.0
+offset_top = 20.0
+offset_right = 900.0
+offset_bottom = 60.0
