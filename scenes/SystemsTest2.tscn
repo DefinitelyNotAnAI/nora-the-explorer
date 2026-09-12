@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems_test_2.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/TriggerArea.tscn" id="4_trigger"]
+[ext_resource type="PackedScene" path="res://scenes/Pushable.tscn" id="5_pushable"]
+[ext_resource type="PackedScene" path="res://scenes/Collectible.tscn" id="6_collectible"]
+[ext_resource type="PackedScene" path="res://scenes/Inspectable.tscn" id="7_inspectable"]
+[ext_resource type="PackedScene" path="res://scenes/SpeechBubble.tscn" id="8_bubble"]
+[ext_resource type="Script" path="res://scripts/room_floor.gd" id="9_roomfloor"]
+
+[node name="SystemsTest2" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_script")
+
+[node name="RoomFloor" type="Polygon2D" parent="." groups=["room_floor"]]
+color = Color(0.7, 0.7, 0.7, 0.25)
+polygon = PackedVector2Array(0, 520, 1300, 520, 1300, 300, 0, 300)
+script = ExtResource("9_roomfloor")
+near_y = 520.0
+far_y = 300.0
+far_scale = 0.4
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(150, 480)
+
+[node name="SpeechBubble" parent="Player" instance=ExtResource("8_bubble")]
+position = Vector2(-80, -80)
+
+[node name="Pushable1" parent="." instance=ExtResource("5_pushable")]
+position = Vector2(500, 450)
+
+[node name="HiddenItem" parent="." instance=ExtResource("6_collectible")]
+position = Vector2(500, 450)
+
+[node name="Sock1" parent="." instance=ExtResource("7_inspectable")]
+position = Vector2(750, 420)
+is_correct = true
+
+[node name="Sock2" parent="." instance=ExtResource("7_inspectable")]
+position = Vector2(850, 400)
+
+[node name="Sock3" parent="." instance=ExtResource("7_inspectable")]
+position = Vector2(950, 370)
+is_correct = true
+
+[node name="Sock4" parent="." instance=ExtResource("7_inspectable")]
+position = Vector2(1050, 340)
+
+[node name="CatTrigger" parent="." instance=ExtResource("4_trigger")]
+position = Vector2(1200, 310)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 200
+
+[node name="StatusLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 700.0
+offset_bottom = 80.0
+autowrap_mode = 3
